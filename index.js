@@ -14,19 +14,15 @@ const iconRoute = (req, res) => {
     res.status(404).end();
   }
 
-  let iconStr = icons[iconName];
+  const fill = req.params.fill || '000';
 
-  if (req.params.fill) {
-    iconStr = iconStr.replace(
-      /^<svg /,
-      `<svg style="fill:#${req.params.fill};stroke:#${req.params.fill};" `
-    );
-  }
+  const iconStr = icons[iconName].replace(
+    /^<svg /,
+    `<svg style="fill:#${fill};stroke:#${fill};" `
+  );
 
-  if (iconName in icons) {
-    res.set('Content-Type', 'image/svg+xml');
-    res.send(iconStr);
-  }
+  res.set('Content-Type', 'image/svg+xml');
+  res.send(iconStr);
 };
 
 // Accept dynamic icon requests with or without a fill
