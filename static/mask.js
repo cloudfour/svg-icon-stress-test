@@ -2,7 +2,9 @@ import * as icons from './assets/icons.js';
 
 const iconArray = Object.keys(icons).map((key) => {
   const name = key.replace(/Icon$/g, '');
-  return `<div class="mask-icon" style="--icon: url(/icons/${name})"></div>`;
+  return `<div class="mask-icon" style="--icon: url(/icons/${name})">
+  <span class="u-hidden-visually">${name}</span>
+</div>`;
 });
 const runButton = document.getElementById('run');
 const outputContainer = document.getElementById('output');
