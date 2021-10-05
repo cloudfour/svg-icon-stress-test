@@ -8,11 +8,7 @@ body {
   color: rgba(0, 0, 0, 0.85);
   font-family: sans-serif;
   line-height: 1.5;
-  margin: 1.5em;
-}
-
-body > * + * {
-  margin-top: 1.5em;
+  margin: 0;
 }
 
 a {
@@ -32,6 +28,8 @@ input {
 }
 
 .controls {
+  background: #fff;
+  box-shadow: 0 0.125em 0 rgba(0, 0, 0, 0.1);
   display: grid;
   grid-gap: 1.5em;
   grid-template-areas:
@@ -39,6 +37,17 @@ input {
     'options';
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
+  padding: 1.5em;
+}
+
+@media (min-height: 30em) {
+  .controls {
+    left: 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
 }
 
 @media (min-width: 40em) {
@@ -122,8 +131,6 @@ input {
 
 .icons {
   align-items: center;
-  background: #fff;
-  border-radius: 0.25em;
   display: flex;
   flex-wrap: wrap;
   gap: 1.5em;
