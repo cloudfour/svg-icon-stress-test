@@ -1,8 +1,7 @@
 import * as icons from '../assets/icons.js';
 
 const iconArray = Object.keys(icons).map(
-  (name) =>
-    `<svg width="24" height="24"><use xlink:href="#${name}" width="24" height="24"/></svg>`
+  (name) => `<svg width="24" height="24"><use href="#${name}"/></svg>`
 );
 const runButton = document.getElementById('run');
 const outputContainer = document.getElementById('output');
