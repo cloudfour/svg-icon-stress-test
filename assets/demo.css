@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background: #f2f5f7;
+  color: rgba(0, 0, 0, 0.85);
+  font-family: sans-serif;
+  line-height: 1.5;
+  margin: 1.5em;
+}
+
+body > * + * {
+  margin-top: 1.5em;
+}
+
+a {
+  color: #215cca;
+}
+
+input {
+  appearance: none;
+  background: #fff;
+  border: 2px solid #485968;
+  border-radius: 0.25em;
+  color: inherit;
+  font: inherit;
+  line-height: 1;
+  height: 2.25em;
+  padding: 0 0.5em;
+}
+
+.controls {
+  display: grid;
+  grid-gap: 1.5em;
+  grid-template-areas:
+    'results'
+    'options';
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+@media (min-width: 40em) {
+  .controls {
+    align-items: end;
+    grid-template-areas: 'results . options';
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto;
+  }
+}
+
+@media (min-width: 45em) {
+  .controls {
+    align-items: center;
+  }
+}
+
+.options {
+  align-items: end;
+  display: grid;
+  grid-area: options;
+  grid-gap: 1em;
+  grid-template-areas:
+    'amount .'
+    'amount button';
+  grid-template-columns: 1fr auto;
+  grid-template-rows: repeat(2, minmax(0, auto));
+}
+
+@media (min-width: 45em) {
+  .options {
+    grid-template-areas: 'amount button';
+    grid-template-rows: auto;
+  }
+}
+
+.options__amount {
+  display: flex;
+  grid-area: amount;
+  flex-direction: column;
+}
+
+@media (min-width: 45em) {
+  .options__amount {
+    align-items: center;
+    flex-direction: row;
+    gap: 1em;
+  }
+}
+
+.options__button {
+  appearance: none;
+  background: #215cca;
+  border: 2px solid #183889;
+  border-radius: 0.25em;
+  color: #fff;
+  grid-area: button;
+  height: 2.25em;
+  font: inherit;
+  line-height: 1;
+  padding: 0 0.75em;
+}
+
+.results {
+  display: grid;
+  grid-area: results;
+  grid-template-columns: 1fr 1fr;
+}
+
+.results > div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.results dd {
+  font-size: 2em;
+  line-height: 1;
+  margin-left: 0;
+}
+
+.icons {
+  align-items: center;
+  background: #fff;
+  border-radius: 0.25em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  padding: 1.5em;
+}
+
+.icons:empty {
+  display: none;
+}
+
+.icons svg {
+  color: #215cca;
+  fill: currentColor;
+  flex: none;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+.icons svg:nth-child(2n) {
+  color: #158466;
+}
+
+.icons svg:nth-child(3n) {
+  color: #950cde;
+}
+
+.icons svg:nth-child(4n) {
+  color: #d9118f;
+}

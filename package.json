@@ -1,0 +1,31 @@
+{
+  "name": "svg-icon-stress-test",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "check-lint": "eslint . && prettier --check .",
+    "lint": "eslint --fix . && prettier --write ."
+  },
+  "eslintConfig": {
+    "extends": "plugin:@cloudfour/recommended"
+  },
+  "prettier": {
+    "singleQuote": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloudfour/svg-icon-stress-test.git"
+  },
+  "author": "Cloud Four",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cloudfour/svg-icon-stress-test/issues"
+  },
+  "homepage": "https://github.com/cloudfour/svg-icon-stress-test#readme",
+  "devDependencies": {
+    "@cloudfour/eslint-plugin": "^17.1.0",
+    "eslint": "^7.32.0",
+    "prettier": "^2.4.1"
+  }
+}
