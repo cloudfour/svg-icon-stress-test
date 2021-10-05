@@ -40,8 +40,8 @@ function runTest() {
   const endTime = performance.now();
   const time = endTime - startTime;
   const timePer = time / total;
-  resultTotalContainer.innerHTML = `${time} ms`;
-  resultPerContainer.innerHTML = `${timePer.toFixed(2)} ms`;
+  resultTotalContainer.innerHTML = `${parseFloat(time.toFixed(2))} ms`;
+  resultPerContainer.innerHTML = `${parseFloat(timePer.toFixed(2))} ms`;
 }
 
 makeSprite();
