@@ -1,9 +1,8 @@
 {
-  "name": "svg-icon-stress-test",
-  "version": "1.0.0",
-  "description": "",
   "private": true,
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
     "check-lint": "eslint . && prettier --check .",
     "lint": "eslint --fix . && prettier --write ."
   },
@@ -27,5 +26,8 @@
     "@cloudfour/eslint-plugin": "^17.1.0",
     "eslint": "^7.32.0",
     "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
   }
 }
