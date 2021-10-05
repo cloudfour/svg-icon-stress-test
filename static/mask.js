@@ -1,7 +1,5 @@
 import * as icons from './assets/icons.js';
-import * as colors from './assets/colors.js';
 
-const colorArray = Object.values(colors);
 const iconArray = Object.keys(icons).map((key) => {
   const name = key.replace(/Icon$/g, '');
   return `<div class="mask-icon" style="--icon: url(/icons/${name})"></div>`;
