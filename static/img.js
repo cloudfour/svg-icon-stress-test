@@ -26,17 +26,21 @@ function runTest() {
       return `<img src="${path}/${fill}" alt="" width="24" height="24">`;
     });
 
-  const startTime = performance.now();
+  requestAnimationFrame(() => {
+    const startTime = performance.now();
 
-  for (let i = 0; i < testArray.length; i++) {
-    outputContainer.insertAdjacentHTML('beforeend', testArray[i]);
-  }
+    for (let i = 0; i < testArray.length; i++) {
+      outputContainer.insertAdjacentHTML('beforeend', testArray[i]);
+    }
 
-  const endTime = performance.now();
-  const time = endTime - startTime;
-  const timePer = time / total;
-  resultTotalContainer.innerHTML = `${parseFloat(time.toFixed(2))} ms`;
-  resultPerContainer.innerHTML = `${parseFloat(timePer.toFixed(2))} ms`;
+    requestAnimationFrame(() => {
+      const endTime = performance.now();
+      const time = endTime - startTime;
+      const timePer = time / total;
+      resultTotalContainer.innerHTML = `${parseFloat(time.toFixed(2))} ms`;
+      resultPerContainer.innerHTML = `${parseFloat(timePer.toFixed(2))} ms`;
+    });
+  });
 }
 
 runButton.addEventListener('click', () => runTest());
