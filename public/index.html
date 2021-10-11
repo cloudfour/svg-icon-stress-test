@@ -8,18 +8,23 @@
     <script type="module" src="demo.js"></script>
   </head>
   <body>
-    <div>
-      <dl>
-        <dt>Total</dt>
-        <dd id="result">–</dd>
-        <dt>Per icon</dt>
-        <dd id="resultPer">–</dd>
+    <div class="ui">
+      <dl class="stats">
+        <div class="stats__item">
+          <dt>Total</dt>
+          <dd id="result">–</dd>
+        </div>
+        <div class="stats__item">
+          <dt>Per icon</dt>
+          <dd id="resultPer">–</dd>
+        </div>
+        <div class="stats__meta">
+          <dt>Last run</dt>
+          <dd id="lastRun">Never</dd>
+        </div>
       </dl>
-    </div>
-
-    <div>
-      <label>
-        Technique
+      <div class="controls">
+        <label for="technique"> Technique </label>
         <select id="technique">
           <option value="inline">Inline</option>
           <option value="use">Symbol Sprite</option>
@@ -28,14 +33,11 @@
           <option value="filter">CSS Filter</option>
           <option value="mask">CSS Mask</option>
         </select>
-      </label>
-      <label>
-        Total icons
+        <label for="total"> Total icons </label>
         <input id="total" type="number" min="1" step="1" value="1000" />
-      </label>
-      <button id="run">Run</button>
+        <button class="controls__action" id="run">Run</button>
+      </div>
     </div>
-
     <div id="output" class="icons"></div>
   </body>
 </html>

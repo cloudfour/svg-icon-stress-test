@@ -88,6 +88,8 @@ function updateResults(startTime, endTime, total = 1) {
   const time = endTime - startTime;
   dom.result.innerHTML = formatResultTime(time);
   dom.resultPer.innerHTML = total > 1 ? formatResultTime(time / total) : '–';
+  const lastRun = new Date(endTime);
+  dom.lastRun.innerHTML = lastRun.toLocaleTimeString();
 }
 
 function runTest() {
