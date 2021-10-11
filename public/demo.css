@@ -1,0 +1,68 @@
+/* Icon Grid */
+
+.icons svg {
+  fill: currentColor;
+  flex: none;
+  stroke: currentColor;
+  stroke-width: 0;
+}
+
+.icons > *:nth-child(2n) {
+  color: var(--color-blue);
+}
+
+.icons > *:nth-child(3n) {
+  color: var(--color-green);
+}
+
+.icons > *:nth-child(4n) {
+  color: var(--color-purple);
+}
+
+.icons > *:nth-child(5n) {
+  color: var(--color-pink);
+}
+
+/* Technique: Filter */
+
+.icons[data-technique="filter"] > *:nth-child(2n) {
+  filter: var(--filter-blue);
+}
+
+.icons[data-technique="filter"] > *:nth-child(3n) {
+  filter: var(--filter-green);
+}
+
+.icons[data-technique="filter"] > *:nth-child(4n) {
+  filter: var(--filter-purple);
+}
+
+.icons[data-technique="filter"] > *:nth-child(5n) {
+  filter: var(--filter-pink);
+}
+
+/* Technique: Mask */
+
+.icons[data-technique="mask"] > * {
+  background: currentColor;
+  display: inline-block;
+  height: 1.5em;
+  -webkit-mask-image: var(--icon);
+  mask-image: var(--icon);
+  width: 1.5em;
+}
+
+/* Utility classes */
+
+.u-hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: polygon(0 0, 0 0, 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}

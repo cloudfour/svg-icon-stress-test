@@ -30,9 +30,7 @@ const startArrays = {
       `<img src="assets/icons/${key}.svg" alt="${key}" width="24" height="24">`
   ),
   mask: iconKeys.map(
-    (
-      key
-    ) => `<div class="mask-icon" style="--icon: url(assets/icons/${key}.svg)">
+    (key) => `<div style="--icon: url(assets/icons/${key}.svg)">
   <span class="u-hidden-visually">${key}</span>
 </div>`
   ),
