@@ -1,8 +1,10 @@
+const { basename } = require('path');
 const { src, dest, parallel } = require('gulp');
-const svgStore = require('gulp-svgstore');
-const replace = require('gulp-replace');
-const wrap = require('gulp-wrap');
+const concat = require('gulp-concat');
 const rename = require('gulp-rename');
+const replace = require('gulp-replace');
+const svgStore = require('gulp-svgstore');
+const wrap = require('gulp-wrap');
 const colors = require('./colors.json');
 
 const iconGlob = 'node_modules/@cloudfour/patterns/src/assets/icons/*.svg';
@@ -21,10 +23,33 @@ function spriteModule() {
     .pipe(dest('public/assets'));
 }
 
-function icons() {
-  const destGlob = 'public/assets/static';
+function iconModule() {
+  return (
+    src(iconGlob)
+      // .pipe(wrap('export const <%= file.path %> = `<%= contents %>`;'))
+      .pipe(
+        wrap((data) => {
+          const key = basename(data.file.path, '.svg');
+          return `'${key}': \`${data.contents}\`,`;
+        })
+      )
+      .pipe(concat('icons.js'))
+      .pipe(wrap('export const icons = { <%= contents %> };'))
+      .pipe(dest('public/assets'))
+  );
+}
+
+function staticIcons() {
+  const destGlob = 'public/assets/icons';
   const pipes = [
-    src(iconGlob).pipe(dest(destGlob)),
+    src(iconGlob)
+      .pipe(
+        replace(
+          /^<svg /,
+          `<svg style="fill:currentColor;stroke:currentColor;" `
+        )
+      )
+      .pipe(dest(destGlob)),
     ...Object.entries(colors).map(([name, values]) => {
       const { hex } = values;
       return src(iconGlob)
@@ -50,6 +75,7 @@ function colorModule() {
 }
 
 exports.colorModule = colorModule;
-exports.icons = icons;
+exports.iconModule = iconModule;
 exports.spriteModule = spriteModule;
-exports.default = parallel(spriteModule, icons, colorModule);
+exports.staticIcons = staticIcons;
+exports.default = parallel(colorModule, iconModule, spriteModule, staticIcons);

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SVG Icon Stress Test</title>
+    <link rel="stylesheet" href="demo.css" />
+    <script type="module" src="demo.js"></script>
+  </head>
+  <body>
+    <div>
+      <dl>
+        <dt>Total</dt>
+        <dd id="result">–</dd>
+        <dt>Per icon</dt>
+        <dd id="resultPer">–</dd>
+      </dl>
+    </div>
+
+    <div>
+      <label>
+        Technique
+        <select id="technique">
+          <option value="inline">Inline</option>
+          <option value="use">Symbol Sprite</option>
+          <option value="img">Image</option>
+          <option value="uri">Image + Data URI</option>
+          <option value="filter">CSS Filter</option>
+          <option value="mask">CSS Mask</option>
+        </select>
+      </label>
+      <label>
+        Total icons
+        <input id="total" type="number" min="1" step="1" value="1000" />
+      </label>
+      <button id="run">Run</button>
+    </div>
+
+    <div id="output"></div>
+  </body>
+</html>
