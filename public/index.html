@@ -11,12 +11,12 @@
     <div class="ui">
       <dl class="stats">
         <div class="stats__item">
-          <dt>Total</dt>
-          <dd id="result">–</dd>
+          <dt>Average</dt>
+          <dd id="resultAverage">–</dd>
         </div>
         <div class="stats__item">
-          <dt>Per icon</dt>
-          <dd id="resultPer">–</dd>
+          <dt>Median</dt>
+          <dd id="resultMedian">–</dd>
         </div>
       </dl>
       <div class="controls">
@@ -32,6 +32,8 @@
           </select>
           <label for="total"> Total icons </label>
           <input id="total" type="number" min="1" step="1" value="1000" />
+          <label for="cycles"> Cycles </label>
+          <input id="cycles" type="number" min="1" step="1" value="10" />
         </div>
         <p class="controls__meta">Last run: <span id="lastRun">Never</span></p>
         <button class="controls__action" id="run">Run</button>

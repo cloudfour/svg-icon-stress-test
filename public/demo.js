@@ -74,6 +74,21 @@ function shuffleArray(array) {
   return array;
 }
 
+function average(nums) {
+  return nums.reduce((a, b) => a + b) / nums.length;
+}
+
+function median(nums) {
+  const sorted = nums.slice().sort((a, b) => a - b);
+  const middle = Math.floor(sorted.length / 2);
+
+  if (sorted.length % 2 === 0) {
+    return average([sorted[middle - 1], sorted[middle]]);
+  }
+
+  return sorted[middle];
+}
+
 function makeRepetitiveArray(length, values) {
   return Array(Math.ceil(length / values.length))
     .fill(values)
@@ -85,17 +100,13 @@ function formatResultTime(time, units = 'ms') {
   return `${parseFloat(time.toFixed(2))} ${units}`;
 }
 
-function updateResults(startTime, endTime, total = 1) {
-  const time = endTime - startTime;
-  dom.result.innerHTML = formatResultTime(time);
-  dom.resultPer.innerHTML = total > 1 ? formatResultTime(time / total) : '–';
-  const lastRun = new Date(endTime);
-  dom.lastRun.innerHTML = lastRun.toLocaleTimeString();
+function updateResults(results) {
+  dom.resultAverage.innerHTML = formatResultTime(average(results));
+  dom.resultMedian.innerHTML = formatResultTime(median(results));
+  dom.lastRun.innerHTML = new Date().toLocaleTimeString();
 }
 
-function runTest() {
-  const technique = dom.technique.value;
-  const total = parseInt(dom.total.value, 10);
+function runTest(technique, total, callback) {
   const startArray = startArrays[technique];
 
   // Clear the output container if it already has children
@@ -125,9 +136,32 @@ function runTest() {
 
     requestAnimationFrame(() => {
       const endTime = performance.now();
-      updateResults(startTime, endTime, total);
+
+      if (callback) {
+        callback(endTime - startTime);
+      }
     });
   });
 }
 
-dom.run.addEventListener('click', runTest);
+async function runTests() {
+  const technique = dom.technique.value;
+  const total = parseInt(dom.total.value, 10);
+  const cycles = parseInt(dom.cycles.value, 10);
+  const test = (resolve) => {
+    runTest(technique, total, resolve);
+  };
+  const results = [];
+
+  console.log(`Running "${technique}" test of ${total} icons ${cycles} times…`);
+
+  for (let i = 0; i < cycles; i++) {
+    const result = await new Promise(test);
+    console.log(result);
+    results.push(result);
+  }
+
+  updateResults(results);
+}
+
+dom.run.addEventListener('click', runTests);
