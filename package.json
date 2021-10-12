@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "gulp",
-    "serve": "http-server -c-1 public",
+    "serve": "http-server public",
     "start": "npm run build && npm run serve",
     "check-lint": "eslint . && prettier --check .",
     "lint": "eslint --fix . && prettier --write ."
