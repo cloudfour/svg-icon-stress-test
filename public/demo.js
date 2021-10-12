@@ -64,6 +64,16 @@ Object.entries(colors).forEach(([color, { hex, filter }]) => {
 // Insert SVG sprite into page
 document.body.insertAdjacentHTML('afterbegin', sprite);
 
+// https://javascript.info/array-methods#shuffle-an-array
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+
+  return array;
+}
+
 function makeRepetitiveArray(length, values) {
   return Array(Math.ceil(length / values.length))
     .fill(values)
@@ -92,8 +102,12 @@ function runTest() {
   dom.output.innerHTML = '';
   dom.output.setAttribute('data-technique', technique);
 
-  let testArray = makeRepetitiveArray(total, startArray);
+  // Make and shuffle an array (just to make sure the browser isn't taking
+  // shortcuts, but also to make sure the change is noticeable to the viewer)
+  let testArray = shuffleArray(makeRepetitiveArray(total, startArray));
 
+  // We postprocess after shuffling so the behavior of the `img` technique
+  // doesn't noticeably differ from others.
   if (technique in postProcesses) {
     testArray = testArray.map(postProcesses[technique]);
   }
