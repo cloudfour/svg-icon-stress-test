@@ -84,15 +84,12 @@ function updateResults(startTime, endTime, total = 1) {
 }
 
 function runTest() {
-  // Clear the output container if it already has children
-  if (dom.output.children.length > 0) {
-    dom.output.innerHTML = '';
-  }
-
   const technique = dom.technique.value;
   const total = parseInt(dom.total.value, 10);
   const startArray = startArrays[technique];
 
+  // Clear the output container if it already has children
+  dom.output.innerHTML = '';
   dom.output.setAttribute('data-technique', technique);
 
   let testArray = makeRepetitiveArray(total, startArray);
@@ -101,10 +98,10 @@ function runTest() {
     testArray = testArray.map(postProcesses[technique]);
   }
 
+  const testContent = testArray.join('');
+
   requestAnimationFrame((startTime) => {
-    for (let i = 0; i < testArray.length; i++) {
-      dom.output.insertAdjacentHTML('beforeend', testArray[i]);
-    }
+    dom.output.innerHTML = testContent;
 
     requestAnimationFrame((endTime) => {
       updateResults(startTime, endTime, total);
