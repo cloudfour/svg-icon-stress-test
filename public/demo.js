@@ -100,10 +100,17 @@ function runTest() {
 
   const testContent = testArray.join('');
 
-  requestAnimationFrame((startTime) => {
+  // We're using `performance.now` instead of `requestAnimationFrame` timestamps
+  // because those timestamps are often tethered to the refresh rate of the
+  // display, which makes them tricky to reference for very fast paints.
+  // @see https://blog.superhuman.com/performance-metrics-for-blazingly-fast-web-apps/
+  const startTime = performance.now();
+
+  requestAnimationFrame(() => {
     dom.output.innerHTML = testContent;
 
-    requestAnimationFrame((endTime) => {
+    requestAnimationFrame(() => {
+      const endTime = performance.now();
       updateResults(startTime, endTime, total);
     });
   });
