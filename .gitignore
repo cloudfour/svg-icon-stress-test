@@ -2,6 +2,10 @@
 public/assets/*
 !public/assets/.gitkeep
 
+# Optional test assets
+icons/*
+!icons/.gitkeep
+
 # OS
 .DS_Store
 
