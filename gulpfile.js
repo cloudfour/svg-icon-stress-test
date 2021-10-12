@@ -7,7 +7,17 @@ const svgStore = require('gulp-svgstore');
 const wrap = require('gulp-wrap');
 const colors = require('./colors.json');
 
-const iconGlob = 'node_modules/@cloudfour/patterns/src/assets/icons/*.svg';
+const iconNames = [
+  'arrow-down-right',
+  'bell',
+  'envelope',
+  'heart',
+  'magnifying-glass',
+];
+
+const iconGlob = `node_modules/@cloudfour/patterns/src/assets/icons/{${iconNames.join(
+  ','
+)}}.svg`;
 
 function spriteModule() {
   return src(iconGlob)

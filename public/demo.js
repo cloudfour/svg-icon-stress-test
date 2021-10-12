@@ -9,11 +9,8 @@ const dom = {};
 });
 
 // Save convenience arrays of keys and values
-const colorKeys = [null, ...Object.keys(colors)];
-const colorValues = [
-  '#000000',
-  ...Object.values(colors).map((color) => color.hex),
-];
+const colorKeys = Object.keys(colors);
+const colorValues = Object.values(colors).map(({ hex }) => hex);
 const iconKeys = Object.keys(icons);
 const iconValues = Object.values(icons);
 
@@ -40,13 +37,7 @@ const startArrays = {
 const postProcesses = {
   img: (key, index) => {
     const color = colorKeys[index % colorKeys.length];
-    let path = `assets/icons/${key}`;
-
-    if (color) {
-      path += `/${color}`;
-    }
-
-    return `<img src="${path}.svg" alt="${key}" width="24" height="24">`;
+    return `<img src="assets/icons/${key}/${color}.svg" alt="${key}" width="24" height="24">`;
   },
   uri: (svg, index) => {
     const color = colorValues[index % colorValues.length];
