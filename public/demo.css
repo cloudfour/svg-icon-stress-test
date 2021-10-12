@@ -15,50 +15,106 @@ body {
 .ui {
   background: #fff;
   box-shadow: 0 0.125em 0 rgba(0, 0, 0, 0.1);
-  left: 0;
-  position: sticky;
-  top: 0;
   width: 100%;
+}
+
+@media (min-height: 30em) {
+  .ui {
+    left: 0;
+    position: sticky;
+    top: 0;
+  }
+}
+
+@media (min-width: 38em) {
+  .ui {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 64em) {
+  .ui {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 /* Result stats */
 
 .stats {
   display: grid;
-  grid-row-gap: 0.375em;
+  grid-gap: 1em;
   grid-template-columns: 1fr 1fr;
   padding: 1.5em;
+  text-align: center;
 }
 
 .stats__item dd {
   font-size: 1.5em;
 }
 
-.stats__meta {
-  display: flex;
-  font-size: 0.875em;
-  gap: 1ch;
-  grid-column: span 2;
-}
-
-.stats__meta dt::after {
-  content: ':';
-}
-
 /* Controls for test */
 
 .controls {
-  border-top: 1px solid #f2f5f7;
+  border: 0 solid #f2f5f7;
+  border-top-width: 1px;
   display: grid;
+  grid-gap: 1em;
+  grid-template-areas:
+    'options options'
+    'meta action';
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  padding: 1.5em;
+}
+
+@media (min-width: 38em) {
+  .controls {
+    border-left-width: 1px;
+    border-top-width: 0;
+  }
+}
+
+@media (min-width: 64em) {
+  .controls {
+    border-left-width: 0;
+    grid-column: 3;
+  }
+}
+
+.controls__options {
+  display: grid;
+  grid-area: options;
   grid-column-gap: 1ch;
   grid-row-gap: 1em;
   grid-template-columns: auto 1fr;
-  padding: 1.5em;
   white-space: nowrap;
 }
 
+.controls__options select,
+.controls__options input {
+  min-width: 0;
+}
+
+.controls__meta {
+  align-self: center;
+  grid-area: meta;
+  font-size: 0.875em;
+}
+
 .controls__action {
-  grid-column: span 2;
+  appearance: none;
+  background: #215cca;
+  border: 2px solid #183889;
+  border-radius: 0.375em;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1;
+  grid-area: action;
+  padding: 0.5em 0.75em;
 }
 
 /* Icon grid */

@@ -18,23 +18,22 @@
           <dt>Per icon</dt>
           <dd id="resultPer">–</dd>
         </div>
-        <div class="stats__meta">
-          <dt>Last run</dt>
-          <dd id="lastRun">Never</dd>
-        </div>
       </dl>
       <div class="controls">
-        <label for="technique"> Technique </label>
-        <select id="technique">
-          <option value="inline">Inline</option>
-          <option value="use">Symbol Sprite</option>
-          <option value="img">Image</option>
-          <option value="uri">Image + Data URI</option>
-          <option value="filter">CSS Filter</option>
-          <option value="mask">CSS Mask</option>
-        </select>
-        <label for="total"> Total icons </label>
-        <input id="total" type="number" min="1" step="1" value="1000" />
+        <div class="controls__options">
+          <label for="technique"> Technique </label>
+          <select id="technique">
+            <option value="inline">Inline</option>
+            <option value="use">Symbol Sprite</option>
+            <option value="img">Image</option>
+            <option value="uri">Image + Data URI</option>
+            <option value="filter">CSS Filter</option>
+            <option value="mask">CSS Mask</option>
+          </select>
+          <label for="total"> Total icons </label>
+          <input id="total" type="number" min="1" step="1" value="1000" />
+        </div>
+        <p class="controls__meta">Last run: <span id="lastRun">Never</span></p>
         <button class="controls__action" id="run">Run</button>
       </div>
     </div>
