@@ -9,14 +9,14 @@
   </head>
   <body>
     <div class="ui">
-      <dl class="stats">
+      <dl class="stats" id="stats">
         <div class="stats__item">
-          <dt>Average</dt>
-          <dd id="resultAverage">–</dd>
+          <dt>Total</dt>
+          <dd>–</dd>
         </div>
         <div class="stats__item">
-          <dt>Median</dt>
-          <dd id="resultMedian">–</dd>
+          <dt>Per icon</dt>
+          <dd>–</dd>
         </div>
       </dl>
       <div class="controls">
@@ -33,7 +33,7 @@
           <label for="total"> Total icons </label>
           <input id="total" type="number" min="1" step="1" value="1000" />
           <label for="cycles"> Cycles </label>
-          <input id="cycles" type="number" min="1" step="1" value="10" />
+          <input id="cycles" type="number" min="1" step="1" value="1" />
         </div>
         <p class="controls__meta">Last run: <span id="lastRun">Never</span></p>
         <button class="controls__action" id="run">Run</button>

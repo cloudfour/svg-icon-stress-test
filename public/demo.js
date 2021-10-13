@@ -100,9 +100,38 @@ function formatResultTime(time, units = 'ms') {
   return `${parseFloat(time.toFixed(2))} ${units}`;
 }
 
+function getOptions() {
+  const technique = dom.technique.value;
+  const total = parseInt(dom.total.value, 10);
+  const cycles = parseInt(dom.cycles.value, 10);
+  return { technique, total, cycles };
+}
+
+function statItemHtml(dt, dd) {
+  return `<div class="stats__item">
+  <dt>${dt}</dt>
+  <dd>${formatResultTime(dd)}</dd>
+</div>`;
+}
+
 function updateResults(results) {
-  dom.resultAverage.innerHTML = formatResultTime(average(results));
-  dom.resultMedian.innerHTML = formatResultTime(median(results));
+  const statItems = [];
+
+  if (results.length > 1) {
+    statItems.push(
+      statItemHtml('Average', average(results)),
+      statItemHtml('Median', median(results))
+    );
+  } else {
+    const { total } = getOptions();
+    const result = results[0];
+    statItems.push(
+      statItemHtml('Total', result),
+      statItemHtml('Per icon', result / total)
+    );
+  }
+
+  dom.stats.innerHTML = statItems.join('\n');
   dom.lastRun.innerHTML = new Date().toLocaleTimeString();
 }
 
@@ -145,15 +174,18 @@ function runTest(technique, total, callback) {
 }
 
 async function runTests() {
-  const technique = dom.technique.value;
-  const total = parseInt(dom.total.value, 10);
-  const cycles = parseInt(dom.cycles.value, 10);
+  const { technique, total, cycles } = getOptions();
+
   const test = (resolve) => {
     runTest(technique, total, resolve);
   };
   const results = [];
 
-  console.log(`Running "${technique}" test of ${total} icons ${cycles} times…`);
+  console.log(
+    `Running "${technique}" test of ${total} icon${
+      total > 1 ? 's' : ''
+    } ${cycles} time${cycles > 1 ? 's' : ''}…`
+  );
 
   for (let i = 0; i < cycles; i++) {
     const result = await new Promise(test);

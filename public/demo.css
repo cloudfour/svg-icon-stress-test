@@ -41,18 +41,27 @@ body {
   }
 }
 
-/* Result stats */
+/* Stats */
 
 .stats {
-  display: grid;
-  grid-gap: 1em;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  gap: 1em;
   padding: 1.5em;
   text-align: center;
 }
 
+.stats__item {
+  flex: 1;
+}
+
 .stats__item dd {
   font-size: 1.5em;
+}
+
+@media (min-width: 60em) {
+  .stats__item dd {
+    font-size: 2em;
+  }
 }
 
 /* Controls for test */
