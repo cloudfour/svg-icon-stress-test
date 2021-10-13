@@ -94,6 +94,7 @@ body {
 }
 
 .controls__options {
+  align-items: center;
   display: grid;
   grid-area: options;
   grid-column-gap: 1ch;
@@ -104,6 +105,7 @@ body {
 
 .controls__options select,
 .controls__options input {
+  font-size: inherit;
   min-width: 0;
 }
 
