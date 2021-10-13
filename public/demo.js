@@ -55,6 +55,14 @@ const postProcesses = {
   },
 };
 
+// Optional image preload paths
+const preloads = {
+  img: iconKeys
+    .map((key) => colorKeys.map((color) => `assets/icons/${key}/${color}.svg`))
+    .flat(),
+  mask: iconKeys.map((key) => `assets/icons/${key}.svg`),
+};
+
 // Set color values as CSS custom properties
 Object.entries(colors).forEach(([color, { hex, filter }]) => {
   document.documentElement.style.setProperty(`--color-${color}`, hex);
@@ -63,6 +71,21 @@ Object.entries(colors).forEach(([color, { hex, filter }]) => {
 
 // Insert SVG sprite into page
 document.body.insertAdjacentHTML('afterbegin', sprite);
+
+function preloadImages(paths) {
+  const links = paths.map(
+    (href) => `<link rel="preload" href="${href}" as="image">`
+  );
+  document.head.insertAdjacentHTML('beforeend', links.join('\n'));
+}
+
+function preloadImagesForTechnique() {
+  const { technique } = getOptions();
+
+  if (technique in preloads) {
+    preloadImages(preloads[technique]);
+  }
+}
 
 // https://javascript.info/array-methods#shuffle-an-array
 function shuffleArray(array) {
@@ -200,3 +223,7 @@ async function runTests() {
 }
 
 dom.run.addEventListener('click', runTests);
+
+dom.technique.addEventListener('change', preloadImagesForTechnique);
+
+preloadImagesForTechnique();
