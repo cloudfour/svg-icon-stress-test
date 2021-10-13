@@ -84,8 +84,21 @@ function colorModule() {
     .pipe(dest('public/assets'));
 }
 
+function copyFavicon() {
+  return src(
+    'node_modules/@cloudfour/patterns/src/assets/favicons/favicon.ico'
+  ).pipe(dest('public'));
+}
+
 exports.colorModule = colorModule;
+exports.copyFavicon = copyFavicon;
 exports.iconModule = iconModule;
 exports.spriteModule = spriteModule;
 exports.staticIcons = staticIcons;
-exports.default = parallel(colorModule, iconModule, spriteModule, staticIcons);
+exports.default = parallel(
+  colorModule,
+  copyFavicon,
+  iconModule,
+  spriteModule,
+  staticIcons
+);

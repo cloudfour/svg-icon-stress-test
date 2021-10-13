@@ -1,6 +1,7 @@
 # Build output
 public/assets/*
 !public/assets/.gitkeep
+public/favicon.ico
 
 # Optional test assets
 icons/*
