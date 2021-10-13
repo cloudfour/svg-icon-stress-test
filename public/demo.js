@@ -174,6 +174,8 @@ function runTest(technique, total, callback) {
 }
 
 async function runTests() {
+  dom.run.disabled = true;
+
   const { technique, total, cycles } = getOptions();
 
   const test = (resolve) => {
@@ -194,6 +196,7 @@ async function runTests() {
   }
 
   updateResults(results);
+  dom.run.disabled = false;
 }
 
 dom.run.addEventListener('click', runTests);

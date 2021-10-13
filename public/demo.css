@@ -127,6 +127,12 @@ body {
   padding: 0.5em 0.75em;
 }
 
+.controls__action:disabled {
+  cursor: not-allowed;
+  filter: grayscale(60%);
+  opacity: 0.85;
+}
+
 /* Icon grid */
 
 .icons {
