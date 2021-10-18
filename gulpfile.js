@@ -1,7 +1,8 @@
 const { basename } = require('path');
 const fg = require('fast-glob');
-const { src, dest, parallel } = require('gulp');
+const { src, dest, parallel, series } = require('gulp');
 const concat = require('gulp-concat');
+const raster = require('gulp-raster-update');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const svgStore = require('gulp-svgstore');
@@ -51,7 +52,7 @@ function iconModule() {
     .pipe(dest('public/assets'));
 }
 
-function staticIcons() {
+function colorIcons() {
   const destGlob = 'public/assets/icons';
   const pipes = [
     src(iconGlob)
@@ -79,6 +80,13 @@ function staticIcons() {
   return Promise.all(pipes);
 }
 
+function rasterIcons() {
+  return src('public/assets/icons/**/*.svg')
+    .pipe(raster({ format: 'png', scale: 2 }))
+    .pipe(rename({ extname: '.png', suffix: '@2x' }))
+    .pipe(dest('public/assets/icons'));
+}
+
 function colorModule() {
   return src('colors.json')
     .pipe(wrap('export const colors = <%= contents %>;', {}, { parse: false }))
@@ -91,6 +99,8 @@ function copyFavicon() {
     'node_modules/@cloudfour/patterns/src/assets/favicons/favicon.ico'
   ).pipe(dest('public'));
 }
+
+const staticIcons = series(colorIcons, rasterIcons);
 
 exports.colorModule = colorModule;
 exports.copyFavicon = copyFavicon;
