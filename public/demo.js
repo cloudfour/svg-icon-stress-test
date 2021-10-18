@@ -20,6 +20,10 @@ const startArrays = {
   use: iconKeys.map(
     (key) => `<svg width="24" height="24"><use href="#${key}" /></svg>`
   ),
+  useExternal: iconKeys.map(
+    (key) =>
+      `<svg width="24" height="24"><use href="assets/sprite.svg#${key}" /></svg>`
+  ),
   img: iconKeys,
   uri: iconValues,
   filter: iconKeys.map(

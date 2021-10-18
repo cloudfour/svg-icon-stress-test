@@ -25,6 +25,8 @@ const iconGlob = fg.sync(customIconGlob).length
 function spriteModule() {
   return src(iconGlob)
     .pipe(svgStore({ inlineSvg: true }))
+    .pipe(rename('sprite.svg'))
+    .pipe(dest('public/assets'))
     .pipe(
       replace(
         `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"`,
