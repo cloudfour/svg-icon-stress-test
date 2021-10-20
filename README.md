@@ -1,5 +1,7 @@
 # SVG Icon Stress Test
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5bd0736c-c9f7-4bed-8846-7ee2b476202b/deploy-status)](https://app.netlify.com/sites/svg-icon-stress-test/deploys)
+
 ## Getting started
 
 1. Install dependencies: `npm ci`
