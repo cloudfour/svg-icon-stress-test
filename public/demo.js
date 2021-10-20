@@ -112,21 +112,6 @@ function shuffleArray(array) {
   return array;
 }
 
-function average(nums) {
-  return nums.reduce((a, b) => a + b) / nums.length;
-}
-
-function median(nums) {
-  const sorted = nums.slice().sort((a, b) => a - b);
-  const middle = Math.floor(sorted.length / 2);
-
-  if (sorted.length % 2 === 0) {
-    return average([sorted[middle - 1], sorted[middle]]);
-  }
-
-  return sorted[middle];
-}
-
 function makeRepetitiveArray(length, values) {
   return Array(Math.ceil(length / values.length))
     .fill(values)
@@ -141,8 +126,7 @@ function formatResultTime(time, units = 'ms') {
 function getOptions() {
   const technique = dom.technique.value;
   const total = parseInt(dom.total.value, 10);
-  const cycles = parseInt(dom.cycles.value, 10);
-  return { technique, total, cycles };
+  return { technique, total };
 }
 
 function statItemHtml(dt, dd) {
@@ -152,28 +136,19 @@ function statItemHtml(dt, dd) {
 </div>`;
 }
 
-function updateResults(results) {
-  const statItems = [];
-
-  if (results.length > 1) {
-    statItems.push(
-      statItemHtml('Average', average(results)),
-      statItemHtml('Median', median(results))
-    );
-  } else {
-    const { total } = getOptions();
-    const result = results[0];
-    statItems.push(
-      statItemHtml('Total', result),
-      statItemHtml('Per icon', result / total)
-    );
-  }
+function updateResults(result) {
+  const { total } = getOptions();
+  const statItems = [
+    statItemHtml('Total', result),
+    statItemHtml('Per icon', result / total),
+  ];
 
   dom.stats.innerHTML = statItems.join('\n');
   dom.lastRun.innerHTML = new Date().toLocaleTimeString();
 }
 
-function runTest(technique, total, callback) {
+function runTest() {
+  const { technique, total } = getOptions();
   const startArray = startArrays[technique];
 
   // Clear the output container if it already has children
@@ -203,41 +178,12 @@ function runTest(technique, total, callback) {
 
     requestAnimationFrame(() => {
       const endTime = performance.now();
-
-      if (callback) {
-        callback(endTime - startTime);
-      }
+      updateResults(endTime - startTime);
     });
   });
 }
 
-async function runTests() {
-  dom.run.disabled = true;
-
-  const { technique, total, cycles } = getOptions();
-
-  const test = (resolve) => {
-    runTest(technique, total, resolve);
-  };
-  const results = [];
-
-  console.log(
-    `Running "${technique}" test of ${total} icon${
-      total > 1 ? 's' : ''
-    } ${cycles} time${cycles > 1 ? 's' : ''}…`
-  );
-
-  for (let i = 0; i < cycles; i++) {
-    const result = await new Promise(test);
-    console.log(result);
-    results.push(result);
-  }
-
-  updateResults(results);
-  dom.run.disabled = false;
-}
-
-dom.run.addEventListener('click', runTests);
+dom.run.addEventListener('click', runTest);
 
 dom.technique.addEventListener('change', preloadImagesForTechnique);
 
