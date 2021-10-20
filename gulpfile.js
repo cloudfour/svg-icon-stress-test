@@ -100,17 +100,13 @@ function copyFavicon() {
   ).pipe(dest('public'));
 }
 
-const staticIcons = series(colorIcons, rasterIcons);
-
+exports.colorIcons = colorIcons;
 exports.colorModule = colorModule;
 exports.copyFavicon = copyFavicon;
 exports.iconModule = iconModule;
+exports.rasterIcons = rasterIcons;
 exports.spriteModule = spriteModule;
-exports.staticIcons = staticIcons;
-exports.default = parallel(
-  colorModule,
-  copyFavicon,
-  iconModule,
-  spriteModule,
-  staticIcons
+exports.default = series(
+  parallel(colorIcons, colorModule, copyFavicon, iconModule, spriteModule),
+  rasterIcons
 );
