@@ -50,7 +50,9 @@ const postProcesses = {
   },
   uri: (svg, index) => {
     const color = colorValues[index % colorValues.length];
-    svg = svg.replace(/^<svg /, `<svg style="fill:${color};stroke:${color};" `);
+    svg = svg
+      .replace(/^<svg /, `<svg style="fill:${color};stroke:${color};" `)
+      .replace(/currentColor/g, color);
     // Thanks to: filamentgroup/directory-encoder
     svg = svg
       .replace(/[\t\n\r]/gim, '') // Strip newlines and tabs
