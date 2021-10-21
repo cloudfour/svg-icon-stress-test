@@ -11,7 +11,7 @@
         id="envelope-Fill-1" fill="#000000"></path>
       <g id="envelope-Group-5" transform="translate(0.000200, 4.684500)">
         <mask id="envelope-mask-2" fill="white">
-          <use xlink:href="#path-1"></use>
+          <use xlink:href="#envelope-path-1"></use>
         </mask>
         <g id="envelope-Clip-4"></g>
         <path
