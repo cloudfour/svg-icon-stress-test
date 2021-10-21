@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>heart</title>
+  <defs>
+    <polygon id="heart-path-1" points="0 0 22.8 0 22.8 18.522 0 18.522"></polygon>
+  </defs>
+  <g id="heart-heart" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="heart-Group-3" transform="translate(0.600000, 3.000000)">
+      <mask id="heart-mask-2" fill="white">
+        <use xlink:href="#path-1"></use>
+      </mask>
+      <g id="heart-Clip-2"></g>
+      <path
+        d="M11.4,18.522 C23.237,10.247 22.798,7.335 22.798,5.05 C22.798,2.764 20.661,0 17.099,0 C13.537,0 11.4,3.363 11.4,3.363 C11.4,3.363 9.263,0 5.701,0 C2.139,0 0.002,2.759 0.002,5.05 C0.002,7.341 -0.437,10.247 11.4,18.522"
+        id="heart-Fill-1" fill="#000000" mask="url(#heart-mask-2)"></path>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>envelope</title>
+  <defs>
+    <polygon id="envelope-path-1" points="0 0 21.9998 0 21.9998 11.315 0 11.315"></polygon>
+  </defs>
+  <g id="envelope-envelope" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="envelope-Group-6" transform="translate(1.000000, 4.000000)">
+      <path d="M11,9.314 L22,2.314 L22,2 C22,0.895 21.105,0 20,0 L2,0 C0.895,0 0,0.895 0,2 L0,2.314 L11,9.314 Z"
+        id="envelope-Fill-1" fill="#000000"></path>
+      <g id="envelope-Group-5" transform="translate(0.000200, 4.684500)">
+        <mask id="envelope-mask-2" fill="white">
+          <use xlink:href="#path-1"></use>
+        </mask>
+        <g id="envelope-Clip-4"></g>
+        <path
+          d="M12.074,6.317 C11.748,6.525 11.374,6.629 11,6.629 C10.626,6.629 10.252,6.525 9.925,6.316 L0,0 L0,9.315 C0,10.42 0.895,11.315 2,11.315 L20,11.315 C21.104,11.315 22,10.42 22,9.315 L22,0 L12.074,6.317 Z"
+          id="envelope-Fill-3" fill="#000000" mask="url(#envelope-mask-2)"></path>
+      </g>
+    </g>
+  </g>
+</svg>

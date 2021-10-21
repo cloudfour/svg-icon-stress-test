@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>arrow-down-right</title>
+  <g id="arrow-down-right-arrow-down-right" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
+    stroke-linecap="round">
+    <g id="arrow-down-right-Group-5" transform="translate(2.000000, 5.000000)" stroke="#000000" stroke-width="3">
+      <path d="M18,7 L9,7 C0,7 0,0 0,0" id="arrow-down-right-Stroke-1"></path>
+      <polyline id="arrow-down-right-Stroke-3" stroke-linejoin="round" points="13 0 20 7 13 14"></polyline>
+    </g>
+  </g>
+</svg>

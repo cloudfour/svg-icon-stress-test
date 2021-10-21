@@ -7,6 +7,9 @@ public/favicon.ico
 icons/*
 !icons/.gitkeep
 
+# This branch only
+!icons/*.svg
+
 # OS
 .DS_Store
 
