@@ -3,7 +3,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink">
   <title>bell</title>
   <g id="bell-bell" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g id="bell-Group-7" transform="translate(3.000000, 1.000000)" fill="#000000">
+    <g id="bell-Group-7" transform="translate(3.000000, 1.000000)" fill="currentColor">
       <path
         d="M16,11.917 L16,9.453 C16,5.62 13.047,2.278 9.215,2.163 C5.251,2.044 2,5.222 2,9.16 L2,11.917 C2,13.353 1.43,14.73 0.414,15.745 L0.414,15.745 C0.149,16.011 0,16.37 0,16.745 L0,16.745 C0,17.526 0.633,18.16 1.414,18.16 L16.586,18.16 C17.367,18.16 18,17.526 18,16.745 L18,16.745 C18,16.37 17.851,16.011 17.586,15.745 L17.586,15.745 C16.57,14.73 16,13.353 16,11.917"
         id="bell-Fill-1"></path>
