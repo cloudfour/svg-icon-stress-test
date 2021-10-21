@@ -67,6 +67,7 @@ function colorIcons() {
       const { hex } = values;
       return src(iconGlob)
         .pipe(replace(/^<svg /, `<svg style="fill:${hex};stroke:${hex};" `))
+        .pipe(replace(/currentColor/g, hex))
         .pipe(
           rename((path) => {
             path.dirname += `/${path.basename}`;
