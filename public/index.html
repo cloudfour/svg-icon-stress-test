@@ -24,7 +24,7 @@
           <label for="technique"> Technique </label>
           <select id="technique">
             <optgroup label="SVG">
-              <option value="inline">Inline</option>
+              <option value="inline">Inline SVG</option>
               <option value="use">Symbol Sprite</option>
               <option value="useExternal">External Symbol Sprite</option>
             </optgroup>
@@ -33,11 +33,14 @@
               <option value="uri">Image + Data URI</option>
               <option value="filter">Image + CSS Filter</option>
             </optgroup>
-            <optgroup label="CSS">
-              <option value="mask">Mask</option>
+            <optgroup label="CSS Background">
               <option value="bg">Background</option>
               <option value="bgUri">Background + Data URI</option>
               <option value="bgFilter">Background + CSS Filter</option>
+            </optgroup>
+            <optgroup label="CSS Mask">
+              <option value="mask">Mask</option>
+              <option value="maskUri">Mask + Data URI</option>
             </optgroup>
           </select>
           <label for="total"> Total icons </label>

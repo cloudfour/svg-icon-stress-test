@@ -185,7 +185,7 @@ body {
 
 /* Technique: Mask */
 
-.icons[data-technique="mask"] > * {
+.icons[data-technique*="mask"] > * {
   background: currentColor;
   display: inline-block;
   height: 1.5em;

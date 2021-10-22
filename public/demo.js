@@ -59,6 +59,9 @@ const startArrays = {
       `<img src="assets/icons/${key}.svg" alt="${key}" width="24" height="24">`
   ),
   mask: genericMonoStartArray,
+  maskUri: iconValues.map((svg) =>
+    genericElementHtml(svgToDataUri(svg, '#000000'), 'fallback')
+  ),
   bg: iconKeys,
   bgUri: iconValues,
   bgFilter: genericMonoStartArray,
