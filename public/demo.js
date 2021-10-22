@@ -54,7 +54,6 @@ const startArrays = {
   ),
   img: iconKeys,
   uri: iconValues,
-  png: iconKeys,
   filter: iconKeys.map(
     (key) =>
       `<img src="assets/icons/${key}.svg" alt="${key}" width="24" height="24">`
@@ -70,10 +69,6 @@ const postProcesses = {
   img: (key, index) => {
     const color = colorKeys[index % colorKeys.length];
     return `<img src="assets/icons/${key}/${color}.svg" alt="${key}" width="24" height="24">`;
-  },
-  png: (key, index) => {
-    const color = colorKeys[index % colorKeys.length];
-    return `<img src="assets/icons/${key}/${color}@2x.png" alt="${key}" width="24" height="24">`;
   },
   uri: (svg, index) => {
     const color = colorValues[index % colorValues.length];
@@ -98,11 +93,6 @@ const staticColorImagePreloads = iconKeys
 
 const preloads = {
   img: staticColorImagePreloads,
-  png: iconKeys
-    .map((key) =>
-      colorKeys.map((color) => `assets/icons/${key}/${color}@2x.png`)
-    )
-    .flat(),
   mask: iconKeys.map((key) => `assets/icons/${key}.svg`),
   bg: staticColorImagePreloads,
 };

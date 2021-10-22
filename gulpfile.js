@@ -1,8 +1,7 @@
 const { basename } = require('path');
 const fg = require('fast-glob');
-const { src, dest, parallel, series } = require('gulp');
+const { src, dest, parallel } = require('gulp');
 const concat = require('gulp-concat');
-const raster = require('gulp-raster-update');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
 const svgStore = require('gulp-svgstore');
@@ -81,13 +80,6 @@ function colorIcons() {
   return Promise.all(pipes);
 }
 
-function rasterIcons() {
-  return src('public/assets/icons/**/*.svg')
-    .pipe(raster({ format: 'png', scale: 2 }))
-    .pipe(rename({ extname: '.png', suffix: '@2x' }))
-    .pipe(dest('public/assets/icons'));
-}
-
 function colorModule() {
   return src('colors.json')
     .pipe(wrap('export const colors = <%= contents %>;', {}, { parse: false }))
@@ -105,9 +97,11 @@ exports.colorIcons = colorIcons;
 exports.colorModule = colorModule;
 exports.copyFavicon = copyFavicon;
 exports.iconModule = iconModule;
-exports.rasterIcons = rasterIcons;
 exports.spriteModule = spriteModule;
-exports.default = series(
-  parallel(colorIcons, colorModule, copyFavicon, iconModule, spriteModule),
-  rasterIcons
+exports.default = parallel(
+  colorIcons,
+  colorModule,
+  copyFavicon,
+  iconModule,
+  spriteModule
 );
