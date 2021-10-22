@@ -90,14 +90,17 @@ const postProcesses = {
 };
 
 // Optional image preload paths
-const staticColorImagePreloads = iconKeys
+const staticMonoPreloads = iconKeys.map((key) => `assets/icons/${key}.svg`);
+const staticColorPreloads = iconKeys
   .map((key) => colorKeys.map((color) => `assets/icons/${key}/${color}.svg`))
   .flat();
 
 const preloads = {
-  img: staticColorImagePreloads,
-  mask: iconKeys.map((key) => `assets/icons/${key}.svg`),
-  bg: staticColorImagePreloads,
+  img: staticColorPreloads,
+  filter: staticMonoPreloads,
+  mask: staticMonoPreloads,
+  bg: staticColorPreloads,
+  bgFilter: staticMonoPreloads,
 };
 
 // Set color values as CSS custom properties
@@ -109,11 +112,18 @@ Object.entries(colors).forEach(([color, { hex, filter }]) => {
 // Insert SVG sprite into page
 document.body.insertAdjacentHTML('afterbegin', sprite);
 
+const preloadedImages = [];
+
 function preloadImages(paths) {
-  const links = paths.map(
-    (href) => `<link rel="preload" href="${href}" as="image">`
-  );
-  document.head.insertAdjacentHTML('beforeend', links.join('\n'));
+  const newPaths = paths.filter((path) => !preloadedImages.includes(path));
+
+  if (newPaths.length > 0) {
+    preloadedImages.push(...newPaths);
+    const links = newPaths.map(
+      (href) => `<link rel="preload" href="${href}" as="image">`
+    );
+    document.head.insertAdjacentHTML('beforeend', links.join('\n'));
+  }
 }
 
 function preloadImagesForTechnique() {
@@ -121,7 +131,6 @@ function preloadImagesForTechnique() {
 
   if (technique in preloads) {
     preloadImages(preloads[technique]);
-    delete preloads[technique]; // Only do this once
   }
 }
 
