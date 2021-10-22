@@ -205,6 +205,49 @@ body {
   width: 1.5em;
 }
 
+/* Sweet linkage */
+
+.linkage {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  list-style: none;
+  padding: 3vh;
+  position: fixed;
+  width: 100%;
+}
+
+.linkage a {
+  background: #fff;
+  background-clip: padding-box;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.375em;
+  color: #215cca;
+  display: block;
+  line-height: 1.1;
+  padding: 0.5em 0.75em;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.linkage a:not(:hover) {
+  text-decoration-color: #8abfff;
+}
+
+.linkage > :not(:first-child) a {
+  border-bottom-left-radius: 0;
+  border-left-width: 1px;
+  border-top-left-radius: 0;
+  margin-left: -1px;
+}
+
+.linkage > :not(:last-child) a {
+  border-bottom-right-radius: 0;
+  border-right-width: 0;
+  border-top-right-radius: 0;
+}
+
 /* Utility classes */
 
 .u-hidden-visually {
