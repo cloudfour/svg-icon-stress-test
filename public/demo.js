@@ -14,6 +14,34 @@ const colorValues = Object.values(colors).map(({ hex }) => hex);
 const iconKeys = Object.keys(icons);
 const iconValues = Object.values(icons);
 
+function svgToDataUri(svg = '', color) {
+  if (color) {
+    svg = svg
+      .replace(/^<svg /, `<svg style="fill:${color};stroke:${color};" `)
+      .replace(/currentColor/g, color);
+  }
+
+  // Thanks to: filamentgroup/directory-encoder
+  svg = svg
+    .replace(/[\t\n\r]/gim, '') // Strip newlines and tabs
+    .replace(/\s\s+/g, ' ') // Condense multiple spaces
+    .replace(/'/gim, '\\i'); // Normalize quotes
+  const encoded = encodeURIComponent(svg)
+    .replace(/\(/g, '%28') // Encode brackets
+    .replace(/\)/g, '%29');
+  return `data:image/svg+xml;charset=UTF-8,${encoded}`;
+}
+
+function genericElementHtml(iconUrl, fallbackText) {
+  return `<div style="--icon: url(${iconUrl})">
+  <span class="u-hidden-visually">${fallbackText}</span>
+</div>`;
+}
+
+const genericMonoStartArray = iconKeys.map((key) =>
+  genericElementHtml(`assets/icons/${key}.svg`, key)
+);
+
 // Precompile starting points for various tests
 const startArrays = {
   inline: iconValues,
@@ -31,11 +59,10 @@ const startArrays = {
     (key) =>
       `<img src="assets/icons/${key}.svg" alt="${key}" width="24" height="24">`
   ),
-  mask: iconKeys.map(
-    (key) => `<div style="--icon: url(assets/icons/${key}.svg)">
-  <span class="u-hidden-visually">${key}</span>
-</div>`
-  ),
+  mask: genericMonoStartArray,
+  bg: iconKeys,
+  bgUri: iconValues,
+  bgFilter: genericMonoStartArray,
 };
 
 // Optional processing steps for each technique after full array is populated
@@ -50,33 +77,34 @@ const postProcesses = {
   },
   uri: (svg, index) => {
     const color = colorValues[index % colorValues.length];
-    svg = svg
-      .replace(/^<svg /, `<svg style="fill:${color};stroke:${color};" `)
-      .replace(/currentColor/g, color);
-    // Thanks to: filamentgroup/directory-encoder
-    svg = svg
-      .replace(/[\t\n\r]/gim, '') // Strip newlines and tabs
-      .replace(/\s\s+/g, ' ') // Condense multiple spaces
-      .replace(/'/gim, '\\i'); // Normalize quotes
-    const encoded = encodeURIComponent(svg)
-      .replace(/\(/g, '%28') // Encode brackets
-      .replace(/\)/g, '%29');
-    const path = `data:image/svg+xml;charset=UTF-8,${encoded}`;
-    return `<img src="${path}" alt="" width="24" height="24">`;
+    const dataUri = svgToDataUri(svg, color);
+    return `<img src="${dataUri}" alt="" width="24" height="24">`;
+  },
+  bg: (key, index) => {
+    const color = colorKeys[index % colorKeys.length];
+    return genericElementHtml(`assets/icons/${key}/${color}.svg`, key);
+  },
+  bgUri: (svg, index) => {
+    const color = colorValues[index % colorValues.length];
+    const dataUri = svgToDataUri(svg, color);
+    return genericElementHtml(dataUri, 'fallback');
   },
 };
 
 // Optional image preload paths
+const staticColorImagePreloads = iconKeys
+  .map((key) => colorKeys.map((color) => `assets/icons/${key}/${color}.svg`))
+  .flat();
+
 const preloads = {
-  img: iconKeys
-    .map((key) => colorKeys.map((color) => `assets/icons/${key}/${color}.svg`))
-    .flat(),
+  img: staticColorImagePreloads,
   png: iconKeys
     .map((key) =>
       colorKeys.map((color) => `assets/icons/${key}/${color}@2x.png`)
     )
     .flat(),
   mask: iconKeys.map((key) => `assets/icons/${key}.svg`),
+  bg: staticColorImagePreloads,
 };
 
 // Set color values as CSS custom properties
